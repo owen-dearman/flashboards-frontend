@@ -24,7 +24,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write src",
     "format:check": "prettier --check src",
-    "lin": "eslint src"
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
