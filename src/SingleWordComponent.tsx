@@ -1,6 +1,7 @@
 import { fullwordData } from "./utils/interfaces";
 import useSound from "use-sound";
 import { dateFormatter } from "./utils/dateFormatter";
+import { wordFormatter } from "./utils/wordFormatter";
 
 interface SingleWordComponentProps {
   data: fullwordData;
@@ -13,7 +14,7 @@ export function SingleWordComponent({
 
   return (
     <div className="singleWordFullCard" data-status={data.meanings[0].pos}>
-      <h1 className="faveWordTitle">{data.word}</h1>
+      <h1 className="faveWordTitle">{wordFormatter(data.word)}</h1>
       <h3 className="faveWordSubtitle">
         Uploaded By {data.username} on {dateFormatter(data.date_added)}
       </h3>
