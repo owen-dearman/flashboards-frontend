@@ -1,26 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { baseURL } from "./utils/url";
 import axios from "axios";
 import { fullwordData } from "./utils/interfaces";
 import { SingleWordComponent } from "./SingleWordComponent";
+import { Action } from "./utils/StateAndAction";
 
-export function WordList(): JSX.Element {
-  const [words, setWords] = useState<fullwordData[]>([]);
+interface WordListProps {
+  faveWordsData: fullwordData[];
+  isLoading: boolean;
+  dispatch: React.Dispatch<Action>;
+}
 
+export function WordList({
+  faveWordsData,
+  isLoading,
+  dispatch,
+}: WordListProps): JSX.Element {
   useEffect(() => {
     async function fetchWords() {
-      const dbResponse = await axios.get(baseURL + "/words");
-      setWords(dbResponse.data);
+      dispatch({ type: "request" });
+      const wordResponse = await axios.get(baseURL + "/words");
+      const userResponse = await axios.get(baseURL + "/users");
+      dispatch({
+        type: "fetchWord&UserData",
+        wordData: wordResponse.data,
+        userData: userResponse.data,
+      });
     }
     fetchWords();
-  });
+  }, [dispatch]);
 
-  const jsxWordList = words.map((word) => (
+  const jsxWordList = faveWordsData.map((word) => (
     <SingleWordComponent key={word.id} data={word} />
   ));
+
   return (
-    <section>
-      <div>{jsxWordList}</div>
-    </section>
+    <>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <section>
+          <div>{jsxWordList}</div>
+        </section>
+      )}
+    </>
   );
 }

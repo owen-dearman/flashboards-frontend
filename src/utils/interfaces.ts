@@ -15,5 +15,4 @@ export interface fullwordData {
 
 type synOb = { id: number; word: string };
 type meaningOb = { id: number; pos: string; meaning: string };
-
 export type userOb = { id: number; username: string };
