@@ -1,5 +1,6 @@
 import { fullwordData } from "./utils/interfaces";
 import useSound from "use-sound";
+import { dateFormatter } from "./utils/dateFormatter";
 
 interface SingleWordComponentProps {
   data: fullwordData;
@@ -14,7 +15,7 @@ export function SingleWordComponent({
     <div>
       <h1>{data.word}</h1>
       <h3>
-        Uploaded By {data.username} on {data.date_added}
+        Uploaded By {data.username} on {dateFormatter(data.date_added)}
       </h3>
       <h2>{data.phonetics}</h2>
       {data.syllables && <h3>Syllables: {data.syllables}</h3>}
