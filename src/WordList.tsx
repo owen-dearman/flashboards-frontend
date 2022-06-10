@@ -40,7 +40,7 @@ export function WordList({
         <h1>Loading...</h1>
       ) : (
         <section>
-          <div>{jsxWordList}</div>
+          <div className="wordList">{jsxWordList}</div>
         </section>
       )}
     </>

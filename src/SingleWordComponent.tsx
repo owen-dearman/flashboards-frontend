@@ -12,35 +12,49 @@ export function SingleWordComponent({
   const [playSound] = useSound(data.audio);
 
   return (
-    <div>
-      <h1>{data.word}</h1>
-      <h3>
+    <div className="singleWordFullCard" data-status={data.meanings[0].pos}>
+      <h1 className="faveWordTitle">{data.word}</h1>
+      <h3 className="faveWordSubtitle">
         Uploaded By {data.username} on {dateFormatter(data.date_added)}
       </h3>
-      <h2>{data.phonetics}</h2>
-      {data.syllables && <h3>Syllables: {data.syllables}</h3>}
-      {data.audio && (
-        <button onClick={() => playSound()}>Pronounce {data.word}</button>
+      <h2 className="faveWordPhonetics">{data.phonetics}</h2>
+      {data.syllables && (
+        <h3 className="faveWordSubtitle">Syllables: {data.syllables}</h3>
       )}
-      <div>
+      <ol>
         {data.meanings.map((m) => (
-          <p key={m.id}>
+          <li key={m.id}>
             ({m.pos}) {m.meaning}
-          </p>
+          </li>
         ))}
-      </div>
-      <h2>Synonyms</h2>
+      </ol>
       {data.synonyms && (
-        <div>
-          {data.synonyms.map((s) => (
-            <p key={s.id}>{s.word}</p>
-          ))}
-        </div>
+        <>
+          <h2 className="faveWordSubtitle">Synonyms</h2>
+          <div className="faveWordSynonymContainer">
+            {data.synonyms.map((s) => (
+              <div className="faveWordSynonym" key={s.id}>
+                {s.word}
+              </div>
+            ))}
+          </div>
+        </>
       )}
       {data.freq && (
-        <h3>Typically used {data.freq.toFixed(3)} times per 1 million words</h3>
+        <h3 className="faveWordSubtitle">
+          Typically used {data.freq.toFixed(3)} times per 1 million words
+        </h3>
       )}
-      {data.url && <a href={data.url}>More Info on {data.word}</a>}
+      {data.audio && (
+        <button className="faveWordButton" onClick={() => playSound()}>
+          🔊
+        </button>
+      )}
+      {data.url && (
+        <a className="faveWordLink" href={data.url} target="_blank" rel="noreferrer">
+          More Info on {data.word}
+        </a>
+      )}
     </div>
   );
 }
