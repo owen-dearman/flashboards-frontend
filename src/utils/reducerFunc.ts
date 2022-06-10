@@ -14,5 +14,10 @@ export const flashboardsReducer = (state: State, action: Action): State => {
         faveWordsData: action.wordData,
         userList: action.userData,
       };
+    case "selectedWord":
+      return {
+        ...state,
+        selectedWord: action.selectedWord,
+      };
   }
 };

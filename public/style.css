@@ -7,6 +7,7 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+
 .loading {
     font-size: 100px;
     font-style: bold;
@@ -19,8 +20,50 @@ body {
     padding: 10px;
 }
 
+.wordListBannerContainer {
+    margin-top: 20px;
+}
+
+.wordListBanner {
+    text-align: center;
+    align-items: center;
+    top: 0.5%;
+    bottom: 0.5%;
+    /* animation: bannermove 10s linear infinite; */
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+.wordListBanner:hover {
+    animation-play-state: paused;
+}
+
+@keyframes bannermove {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-59%, 0);
+    }
+}
+
+.cancelButton {
+    font-size: 40px;
+    border: none;
+    background-color: inherit;
+}
+
+.singleWordFullCardContainer {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+}
+
 .singleWordFullCard {
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,6 +73,7 @@ body {
     border: 3px solid black;
     text-align: center;
     border-radius: 1%;
+    user-select: none
 }
 
 .singleWordFullCard[data-status="noun"] {

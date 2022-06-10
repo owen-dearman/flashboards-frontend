@@ -1,20 +1,23 @@
-import { useEffect } from "react";
+import { Dispatch, useEffect } from "react";
 import { baseURL } from "./utils/url";
 import axios from "axios";
 import { fullwordData } from "./utils/interfaces";
 import { SingleWordComponent } from "./SingleWordComponent";
 import { Action } from "./utils/StateAndAction";
+import { wordFormatter } from "./utils/wordFormatter";
 
 interface WordListProps {
   faveWordsData: fullwordData[];
   isLoading: boolean;
-  dispatch: React.Dispatch<Action>;
+  dispatch: Dispatch<Action>;
+  selectedWord: fullwordData | null;
 }
 
 export function WordList({
   faveWordsData,
   isLoading,
   dispatch,
+  selectedWord,
 }: WordListProps): JSX.Element {
   useEffect(() => {
     async function fetchWords() {
@@ -30,8 +33,19 @@ export function WordList({
     fetchWords();
   }, [dispatch]);
 
-  const jsxWordList = faveWordsData.map((word) => (
-    <SingleWordComponent key={word.id} data={word} />
+  const faveWordList = faveWordsData.map((word) => (
+    <div
+      key={word.id}
+      data-status={word.meanings[0].pos}
+      className="singleWordFullCard"
+      onClick={() => {
+        word === selectedWord
+          ? dispatch({ type: "selectedWord", selectedWord: null })
+          : dispatch({ type: "selectedWord", selectedWord: word });
+      }}
+    >
+      <h1 className="faveWordTitle">{wordFormatter(word.word)}</h1>
+    </div>
   ));
 
   return (
@@ -39,9 +53,17 @@ export function WordList({
       {isLoading ? (
         <h1 className="loading">Loading...</h1>
       ) : (
-        <section>
-          <div className="wordList">{jsxWordList}</div>
-        </section>
+        <>
+          <h2>The Community's Favourite Words!</h2>
+          <section className="wordListBannerContainer">
+            <div className="wordListBanner">{faveWordList}</div>
+          </section>
+          {selectedWord && (
+            <div className="singleWordFullCardContainer">
+              <SingleWordComponent data={selectedWord} dispatch={dispatch} />
+            </div>
+          )}
+        </>
       )}
     </>
   );

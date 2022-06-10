@@ -2,13 +2,17 @@ import { fullwordData } from "./utils/interfaces";
 import useSound from "use-sound";
 import { dateFormatter } from "./utils/dateFormatter";
 import { wordFormatter } from "./utils/wordFormatter";
+import { Dispatch } from "react";
+import { Action } from "./utils/StateAndAction";
 
 interface SingleWordComponentProps {
   data: fullwordData;
+  dispatch: Dispatch<Action>;
 }
 
 export function SingleWordComponent({
   data,
+  dispatch,
 }: SingleWordComponentProps): JSX.Element {
   const [playSound] = useSound(data.audio);
 
@@ -16,7 +20,8 @@ export function SingleWordComponent({
     <div className="singleWordFullCard" data-status={data.meanings[0].pos}>
       <h1 className="faveWordTitle">{wordFormatter(data.word)}</h1>
       <h3 className="faveWordSubtitle">
-        Uploaded By {data.username} on {dateFormatter(data.date_added)}
+        Uploaded by {data.username} on <br></br>{" "}
+        {dateFormatter(data.date_added)}
       </h3>
       <h2 className="faveWordPhonetics">{data.phonetics}</h2>
       {data.syllables && (
@@ -61,6 +66,12 @@ export function SingleWordComponent({
           More Info on {data.word}
         </a>
       )}
+      <button
+        className="cancelButton"
+        onClick={() => dispatch({ type: "selectedWord", selectedWord: null })}
+      >
+        🗙
+      </button>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { emptyState } from "./utils/StateAndAction";
 import { WordList } from "./WordList";
 
 function App(): JSX.Element {
-  const [{ faveWordsData, isLoading }, dispatch] = useReducer(
+  const [{ faveWordsData, isLoading, selectedWord }, dispatch] = useReducer(
     flashboardsReducer,
     emptyState
   );
@@ -18,6 +18,7 @@ function App(): JSX.Element {
         faveWordsData={faveWordsData}
         isLoading={isLoading}
         dispatch={dispatch}
+        selectedWord={selectedWord}
       />
       <Footer />
     </>
