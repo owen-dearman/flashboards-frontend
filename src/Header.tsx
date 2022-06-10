@@ -1,3 +1,10 @@
 export function Header(): JSX.Element {
-  return <div></div>;
+  return (
+    <header>
+      <img
+        src="flashboards-logo.png"
+        alt="Flashboards Logo. Yellow cursive writing"
+      />
+    </header>
+  );
 }

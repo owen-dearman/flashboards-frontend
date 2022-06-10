@@ -51,7 +51,12 @@ export function SingleWordComponent({
         </button>
       )}
       {data.url && (
-        <a className="faveWordLink" href={data.url} target="_blank" rel="noreferrer">
+        <a
+          className="faveWordLink"
+          href={data.url}
+          target="_blank"
+          rel="noreferrer"
+        >
           More Info on {data.word}
         </a>
       )}
