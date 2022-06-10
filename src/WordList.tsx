@@ -37,14 +37,14 @@ export function WordList({
     <div
       key={word.id}
       data-status={word.meanings[0].pos}
-      className="singleWordFullCard"
+      className="wordListBannerItem"
       onClick={() => {
         word === selectedWord
           ? dispatch({ type: "selectedWord", selectedWord: null })
           : dispatch({ type: "selectedWord", selectedWord: word });
       }}
     >
-      <h1 className="faveWordTitle">{wordFormatter(word.word)}</h1>
+      <h1>{wordFormatter(word.word)}</h1>
     </div>
   ));
 
@@ -55,12 +55,12 @@ export function WordList({
       ) : (
         <>
           <h2>The Community's Favourite Words!</h2>
-          <section className="wordListBannerContainer">
-            <div className="wordListBanner">{faveWordList}</div>
-          </section>
+
+          <div className="wordListBannerConatiner">{faveWordList}</div>
+
           {selectedWord && (
             <div className="singleWordFullCardContainer">
-              <SingleWordComponent data={selectedWord} dispatch={dispatch} />
+              <SingleWordComponent data={selectedWord} />
             </div>
           )}
         </>
