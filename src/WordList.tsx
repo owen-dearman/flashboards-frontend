@@ -5,6 +5,7 @@ import { fullwordData } from "./utils/interfaces";
 import { SingleWordComponent } from "./SingleWordComponent";
 import { Action } from "./utils/StateAndAction";
 import { wordFormatter } from "./utils/wordFormatter";
+import { Link } from "react-router-dom";
 
 interface WordListProps {
   faveWordsData: fullwordData[];
@@ -24,6 +25,7 @@ export function WordList({
       dispatch({ type: "request" });
       const wordResponse = await axios.get(baseURL + "/words");
       const userResponse = await axios.get(baseURL + "/users");
+
       dispatch({
         type: "fetchWord&UserData",
         wordData: wordResponse.data,
@@ -65,6 +67,9 @@ export function WordList({
           )}
         </>
       )}
+      <Link to={"/words/index"}>
+        <button>Full Index</button>
+      </Link>
     </>
   );
 }

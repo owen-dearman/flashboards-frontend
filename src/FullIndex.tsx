@@ -20,7 +20,12 @@ export function FullIndex({ faveWordsData }: FullIndexProps) {
       <input
         placeholder="Search Words..."
         onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
       />
+      <button onClick={() => setSearchTerm("")}>Clear Search</button>
+      <p>
+        Showing {fullIndex.length} of {faveWordsData.length} :{" "}
+      </p>
       <div className="singleWordFullCardContainer">{fullIndex}</div>
     </>
   );
