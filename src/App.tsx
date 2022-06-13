@@ -3,7 +3,7 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { flashboardsReducer } from "./utils/reducerFunc";
 import { emptyState } from "./utils/StateAndAction";
-import { WordList } from "./WordList";
+import { WordBoards } from "./WordBoards";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppIndex } from "./AppIndex";
 import { FlashCards } from "./Flashcards";
@@ -24,7 +24,7 @@ function App(): JSX.Element {
           <Route
             path="/words"
             element={
-              <WordList
+              <WordBoards
                 faveWordsData={faveWordsData}
                 isLoading={isLoading}
                 dispatch={dispatch}

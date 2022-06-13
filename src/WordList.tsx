@@ -1,40 +1,21 @@
-import { Dispatch, useEffect } from "react";
-import { baseURL } from "./utils/url";
-import axios from "axios";
+import { Dispatch } from "react";
 import { fullwordData } from "./utils/interfaces";
-import { SingleWordComponent } from "./SingleWordComponent";
 import { Action } from "./utils/StateAndAction";
 import { wordFormatter } from "./utils/wordFormatter";
-import { Link } from "react-router-dom";
 
 interface WordListProps {
   faveWordsData: fullwordData[];
-  isLoading: boolean;
   dispatch: Dispatch<Action>;
   selectedWord: fullwordData | null;
+  isLoading: boolean;
 }
 
 export function WordList({
   faveWordsData,
-  isLoading,
   dispatch,
   selectedWord,
+  isLoading,
 }: WordListProps): JSX.Element {
-  useEffect(() => {
-    async function fetchWords() {
-      dispatch({ type: "request" });
-      const wordResponse = await axios.get(baseURL + "/words");
-      const userResponse = await axios.get(baseURL + "/users");
-
-      dispatch({
-        type: "fetchWord&UserData",
-        wordData: wordResponse.data,
-        userData: userResponse.data,
-      });
-    }
-    fetchWords();
-  }, [dispatch]);
-
   const faveWordList = faveWordsData.map((word) => (
     <div
       key={word.id}
@@ -57,19 +38,9 @@ export function WordList({
       ) : (
         <>
           <h2>The Community's Favourite Words!</h2>
-
           <div className="wordListBannerConatiner">{faveWordList}</div>
-
-          {selectedWord && (
-            <div className="singleWordFullCardContainer">
-              <SingleWordComponent data={selectedWord} />
-            </div>
-          )}
         </>
       )}
-      <Link to={"/words/index"}>
-        <button>Full Index</button>
-      </Link>
     </>
   );
 }
