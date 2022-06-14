@@ -4,21 +4,22 @@ header {
 
 body {
     background-color: rgb(239, 231, 230);
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: cursive;
 }
 
+.homepage {
+    display: flex;
+    font-size: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .loading {
     font-size: 100px;
     font-style: bold;
     text-align: center;
 }
-
-/* .wordList {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-} */
 
 .jointContainer {
     display: flex;
@@ -161,4 +162,27 @@ body {
     background-color: yellow;
     margin: 0% 0.5%;
     border: 1px solid black
+}
+
+input {
+    font-size: 30px;
+    font-family: cursive;
+    border: 1px solid black;
+    margin: 0.2%;
+    background-color: rgb(239, 231, 230);
+}
+
+.submitButton {
+    font-size: 30px;
+    font-family: cursive;
+    background-color: rgb(239, 231, 230);
+}
+
+.submitButton:hover {
+    background-color: black;
+    color: rgb(239, 231, 230)
+}
+
+.addContainer {
+    text-align: center;
 }

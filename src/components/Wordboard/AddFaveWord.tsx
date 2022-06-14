@@ -68,7 +68,7 @@ export function AddFaveWord({ dispatch }: AddFaveWordProps): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="addContainer">
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           name="username"
@@ -82,7 +82,9 @@ export function AddFaveWord({ dispatch }: AddFaveWordProps): JSX.Element {
           value={formInputs.word}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
         />
-        <input type="submit" />
+        <button className="submitButton" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

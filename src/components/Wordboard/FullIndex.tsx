@@ -22,7 +22,9 @@ export function FullIndex({ faveWordsData }: FullIndexProps) {
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
       />
-      <button onClick={() => setSearchTerm("")}>Clear Search</button>
+      <button className="submitButton" onClick={() => setSearchTerm("")}>
+        Clear Search
+      </button>
       <p>
         Showing {fullIndex.length} of {faveWordsData.length} :{" "}
       </p>
