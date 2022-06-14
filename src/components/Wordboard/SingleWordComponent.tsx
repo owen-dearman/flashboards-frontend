@@ -32,7 +32,9 @@ export function SingleWordComponent({
       </ol>
       {data.synonyms && (
         <>
-          <h2 className="faveWordSubtitle">Synonyms</h2>
+          {data.synonyms.length > 0 && (
+            <h2 className="faveWordSubtitle">Synonyms</h2>
+          )}
           <div className="faveWordSynonymContainer">
             {data.synonyms.map((s) => (
               <div className="faveWordSynonym" key={s.id}>
