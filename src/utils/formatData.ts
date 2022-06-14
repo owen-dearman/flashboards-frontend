@@ -51,7 +51,7 @@ export const formatFrequenc1y = (f: string) => parseFloat(f.substring(2));
 
 export function formatFrequency(res: AxiosResponse) {
   const f = res.data[0].tags[0];
-  if (parseInt(f) === 0) {
+  if (parseFloat(f.substring(2)) !== 0) {
     return parseFloat(f.substring(2));
   }
   return null;
