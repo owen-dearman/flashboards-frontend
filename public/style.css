@@ -20,6 +20,19 @@ body {
     padding: 10px;
 } */
 
+.jointContainer {
+    display: flex;
+    flex-direction: inline;
+}
+
+.singleContainer1 {
+    width: 40%
+}
+
+.singleContainer2 {
+    width: 60%
+}
+
 .wordListBannerConatiner {
     display: flex;
     flex-direction: row;
@@ -38,11 +51,21 @@ body {
     font-size: 15px;
 }
 
-/* .cancelButton {
-    font-size: 40px;
-    border: none;
-    background-color: inherit;
-} */
+.wordListBannerItem[data-status="noun"] {
+    background-color: rgb(153, 165, 255)
+}
+
+.wordListBannerItem[data-status="verb"] {
+    background-color: rgb(195, 255, 200)
+}
+
+.wordListBannerItem[data-status="adjective"] {
+    background-color: rgb(255, 110, 110)
+}
+
+.wordListBannerItem[data-status="adverb"] {
+    background-color: rgb(255, 255, 102)
+}
 
 .singleWordFullCardContainer {
     display: flex;
@@ -52,7 +75,7 @@ body {
 
 .singleWordFullCard {
     display: flex;
-    width: 40%;
+    width: 60%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -73,6 +96,10 @@ body {
 
 .singleWordFullCard[data-status="adjective"] {
     background-color: rgb(255, 110, 110)
+}
+
+.singleWordFullCard[data-status="adverb"] {
+    background-color: rgb(255, 255, 102)
 }
 
 .faveWordTitle {
@@ -116,4 +143,15 @@ body {
     margin: 1%;
     padding: 1%;
     text-align: center;
+}
+
+.filtersBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.sortButton {
+    margin: 0% 0.5%
 }

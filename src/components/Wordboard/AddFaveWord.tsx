@@ -6,8 +6,8 @@ import {
   formatFrequency,
   formatMeaningData,
   formatSynonymData,
-} from "./utils/formatData";
-import { baseURL } from "./utils/url";
+} from "../../utils/formatData";
+import { baseURL } from "../../utils/url";
 
 type FormType = { username: string; word: string };
 

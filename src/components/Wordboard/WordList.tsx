@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
-import { fullwordData } from "./utils/interfaces";
-import { Action } from "./utils/StateAndAction";
-import { wordFormatter } from "./utils/wordFormatter";
+import { fullwordData } from "../../utils/interfaces";
+import { Action } from "../../utils/StateAndAction";
+import { wordFormatter } from "../../utils/wordFormatter";
 
 interface WordListProps {
   faveWordsData: fullwordData[];
@@ -36,10 +36,7 @@ export function WordList({
       {isLoading ? (
         <h1 className="loading">Loading...</h1>
       ) : (
-        <>
-          <h2>The Community's Favourite Words!</h2>
-          <div className="wordListBannerConatiner">{faveWordList}</div>
-        </>
+        <div className="wordListBannerConatiner">{faveWordList}</div>
       )}
     </>
   );

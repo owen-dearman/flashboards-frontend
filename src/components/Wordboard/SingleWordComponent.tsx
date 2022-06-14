@@ -1,7 +1,7 @@
-import { fullwordData } from "./utils/interfaces";
+import { fullwordData } from "../../utils/interfaces";
 import useSound from "use-sound";
-import { dateFormatter } from "./utils/dateFormatter";
-import { wordFormatter } from "./utils/wordFormatter";
+import { dateFormatter } from "../../utils/dateFormatter";
+import { wordFormatter } from "../../utils/wordFormatter";
 
 interface SingleWordComponentProps {
   data: fullwordData;

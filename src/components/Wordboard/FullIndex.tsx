@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SingleWordComponent } from "./SingleWordComponent";
-import { filterSearchTerm } from "./utils/filterSearchTerm";
-import { fullwordData } from "./utils/interfaces";
+import { filterSearchTerm } from "../../utils/filterSearchTerm";
+import { fullwordData } from "../../utils/interfaces";
 
 interface FullIndexProps {
   faveWordsData: fullwordData[];
