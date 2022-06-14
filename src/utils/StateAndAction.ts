@@ -1,24 +1,26 @@
-import { fullwordData, userOb } from "./interfaces";
+import { fullwordData } from "./interfaces";
+
+export type SortTypes = "alphaDesc" | "alphaAsc" | "freqDesc" | "freqAsc";
 
 export type State = {
   faveWordsData: fullwordData[];
   isLoading: boolean;
-  userList: userOb[];
   selectedWord: fullwordData | null;
+  activeSort: SortTypes;
 };
 
 export type Action =
   | { type: "request" }
   | {
-      type: "fetchWord&UserData";
+      type: "fetchWords";
       wordData: fullwordData[];
-      userData: userOb[];
     }
-  | { type: "selectedWord"; selectedWord: fullwordData | null };
+  | { type: "selectedWord"; selectedWord: fullwordData | null }
+  | { type: "sort"; activeSort: SortTypes };
 
 export const emptyState: State = {
   faveWordsData: [],
   isLoading: false,
-  userList: [],
   selectedWord: null,
+  activeSort: "alphaAsc",
 };

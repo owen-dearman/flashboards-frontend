@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { Dispatch, useState } from "react";
+import { fetchWords } from "../../utils/fetchWords";
 import {
   findAudio,
   findPhonetics,
@@ -7,19 +8,16 @@ import {
   formatMeaningData,
   formatSynonymData,
 } from "../../utils/formatData";
+import { Action } from "../../utils/StateAndAction";
 import { baseURL } from "../../utils/url";
 
 type FormType = { username: string; word: string };
 
 interface AddFaveWordProps {
-  rerender: (arg0: boolean) => void;
-  prevRe: boolean;
+  dispatch: Dispatch<Action>;
 }
 
-export function AddFaveWord({
-  rerender,
-  prevRe,
-}: AddFaveWordProps): JSX.Element {
+export function AddFaveWord({ dispatch }: AddFaveWordProps): JSX.Element {
   const [formInputs, setFormInputs] = useState<FormType>({
     username: "",
     word: "",
@@ -61,7 +59,8 @@ export function AddFaveWord({
           meanings: formatMeaningData(api1Res.data[0].meanings),
         };
         await axios.post(baseURL + "/words", postReq);
-        rerender(!prevRe);
+        setFormInputs({ username: "", word: "" });
+        await fetchWords(dispatch);
       } catch (error) {
         window.alert(
           "That's either not an English word, or it's already been picked!"

@@ -5,7 +5,7 @@ export interface fullwordData {
   date_added: string;
   word: string;
   phonetics?: string;
-  freq?: number;
+  freq: number;
   syllables?: number;
   audio: string;
   url?: string;

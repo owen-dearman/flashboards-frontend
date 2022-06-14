@@ -153,5 +153,12 @@ body {
 }
 
 .sortButton {
-    margin: 0% 0.5%
+    margin: 0% 0.5%;
+    border: 1px solid black;
+}
+
+.sortButtonActive {
+    background-color: yellow;
+    margin: 0% 0.5%;
+    border: 1px solid black
 }

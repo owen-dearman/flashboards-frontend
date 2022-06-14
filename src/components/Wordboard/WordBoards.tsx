@@ -1,19 +1,18 @@
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch, useEffect } from "react";
 import { fullwordData } from "../../utils/interfaces";
 import { SingleWordComponent } from "./SingleWordComponent";
-import { Action } from "../../utils/StateAndAction";
+import { Action, SortTypes } from "../../utils/StateAndAction";
 import { Link } from "react-router-dom";
 import { AddFaveWord } from "./AddFaveWord";
 import { WordList } from "./WordList";
-import axios from "axios";
-import { baseURL } from "../../utils/url";
-import { WordboardFilters } from "./WordboardFilters";
+import { fetchWords } from "../../utils/fetchWords";
 
 interface WordBoardsProps {
   faveWordsData: fullwordData[];
   isLoading: boolean;
   dispatch: Dispatch<Action>;
   selectedWord: fullwordData | null;
+  activeSort: SortTypes;
 }
 
 export function WordBoards({
@@ -21,31 +20,92 @@ export function WordBoards({
   isLoading,
   dispatch,
   selectedWord,
+  activeSort,
 }: WordBoardsProps): JSX.Element {
-  const [rerender, setRerender] = useState<boolean>(false);
-
   useEffect(() => {
-    async function fetchWords() {
-      dispatch({ type: "request" });
-      const wordResponse = await axios.get(baseURL + "/words");
-      const userResponse = await axios.get(baseURL + "/users");
-
-      dispatch({
-        type: "fetchWord&UserData",
-        wordData: wordResponse.data.sort((a: fullwordData, b: fullwordData) =>
-          a.word.localeCompare(b.word)
-        ),
-        userData: userResponse.data,
-      });
+    async function fetchData() {
+      await fetchWords(dispatch);
     }
-    fetchWords();
-  }, [dispatch, rerender]);
+    fetchData();
+  }, [dispatch]);
+
+  function handleSort(sortParam: SortTypes) {
+    switch (sortParam) {
+      case "alphaAsc":
+        faveWordsData.sort((a, b) => a.word.localeCompare(b.word));
+        break;
+      case "alphaDesc":
+        faveWordsData.sort((a, b) => b.word.localeCompare(a.word));
+        break;
+      case "freqAsc":
+        faveWordsData.sort((a, b) => a.freq - b.freq);
+        break;
+      case "freqDesc":
+        faveWordsData.sort((a, b) => b.freq - a.freq);
+        break;
+    }
+    dispatch({ type: "sort", activeSort: sortParam });
+  }
 
   return (
     <>
-      <AddFaveWord rerender={setRerender} prevRe={rerender} />
+      <AddFaveWord dispatch={dispatch} />
       <h2 style={{ textAlign: "center" }}>The Community's Favourite Words!</h2>
-      <WordboardFilters />
+      <section className="filtersBar">
+        <p>Alphabetical</p>
+        {activeSort === "alphaAsc" ? (
+          <button
+            onClick={() => handleSort("alphaAsc")}
+            className="sortButtonActive"
+          >
+            ⬆️
+          </button>
+        ) : (
+          <button onClick={() => handleSort("alphaAsc")} className="sortButton">
+            ⬆️
+          </button>
+        )}
+        {activeSort === "alphaDesc" ? (
+          <button
+            onClick={() => handleSort("alphaDesc")}
+            className="sortButtonActive"
+          >
+            ⬇️
+          </button>
+        ) : (
+          <button
+            onClick={() => handleSort("alphaDesc")}
+            className="sortButton"
+          >
+            ⬇️
+          </button>
+        )}
+        <p>Frequency</p>
+        {activeSort === "freqAsc" ? (
+          <button
+            onClick={() => handleSort("freqAsc")}
+            className="sortButtonActive"
+          >
+            ⬆️
+          </button>
+        ) : (
+          <button onClick={() => handleSort("freqAsc")} className="sortButton">
+            ⬆️
+          </button>
+        )}
+        {activeSort === "freqDesc" ? (
+          <button
+            onClick={() => handleSort("freqDesc")}
+            className="sortButtonActive"
+          >
+            ⬇️
+          </button>
+        ) : (
+          <button onClick={() => handleSort("freqDesc")} className="sortButton">
+            ⬇️
+          </button>
+        )}
+      </section>
       {selectedWord ? (
         <div className="jointContainer">
           <div className="singleContainer1">

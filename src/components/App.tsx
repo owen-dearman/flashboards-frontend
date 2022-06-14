@@ -10,10 +10,8 @@ import { FlashCards } from "./Flashcards/Flashcards";
 import { FullIndex } from "./Wordboard/FullIndex";
 
 function App(): JSX.Element {
-  const [{ faveWordsData, isLoading, selectedWord }, dispatch] = useReducer(
-    flashboardsReducer,
-    emptyState
-  );
+  const [{ faveWordsData, isLoading, selectedWord, activeSort }, dispatch] =
+    useReducer(flashboardsReducer, emptyState);
 
   return (
     <>
@@ -29,6 +27,7 @@ function App(): JSX.Element {
                 isLoading={isLoading}
                 dispatch={dispatch}
                 selectedWord={selectedWord}
+                activeSort={activeSort}
               />
             }
           />
