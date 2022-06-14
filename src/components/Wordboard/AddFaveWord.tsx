@@ -75,6 +75,7 @@ export function AddFaveWord({ dispatch }: AddFaveWordProps): JSX.Element {
         <input
           name="username"
           placeholder="Username"
+          value={formInputs.username}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
         />
         <input
