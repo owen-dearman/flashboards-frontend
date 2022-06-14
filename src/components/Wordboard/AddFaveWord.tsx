@@ -56,11 +56,9 @@ export function AddFaveWord({ dispatch }: AddFaveWordProps): JSX.Element {
           synonyms: formatSynonymData(api3Res.data),
           meanings: formatMeaningData(api1Res.data[0].meanings),
         };
-        console.log(api2Res.data);
-        console.log(postReq);
-        // await axios.post(baseURL + "/words", postReq);
-        // setFormInputs({ username: "", word: "" });
-        // await fetchWords(dispatch);
+        await axios.post(baseURL + "/words", postReq);
+        setFormInputs({ username: "", word: "" });
+        await fetchWords(dispatch);
       } catch (error) {
         window.alert(
           "That's either not an English word, or it's already been picked!"
