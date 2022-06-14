@@ -47,7 +47,15 @@ export function findPhonetics(res: AxiosResponse) {
   return guess;
 }
 
-export const formatFrequency = (f: string) => parseFloat(f.substring(2));
+export const formatFrequenc1y = (f: string) => parseFloat(f.substring(2));
+
+export function formatFrequency(res: AxiosResponse) {
+  const f = res.data[0].tags[0];
+  if (parseInt(f) === 0) {
+    return parseFloat(f.substring(2));
+  }
+  return null;
+}
 
 export function findAudio(res: AxiosResponse): string | null {
   const isAudio = res.data[0].phonetics.length > 0;

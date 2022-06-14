@@ -32,8 +32,6 @@ export function AddFaveWord({ dispatch }: AddFaveWordProps): JSX.Element {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const word = formInputs.word.toLowerCase();
-    console.log("submit");
-    console.log(formInputs.username);
     if (formInputs.username === "") {
       window.alert("We need a username!");
     } else {
@@ -51,7 +49,7 @@ export function AddFaveWord({ dispatch }: AddFaveWordProps): JSX.Element {
           username: formInputs.username,
           word: word,
           phonetics: findPhonetics(api1Res),
-          freq: formatFrequency(api2Res.data[0].tags[0]),
+          freq: formatFrequency(api2Res),
           syllables: api2Res.data[0].numSyllables,
           audio: findAudio(api1Res),
           url: api1Res.data[0].sourceUrls[0],
